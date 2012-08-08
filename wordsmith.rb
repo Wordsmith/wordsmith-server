@@ -13,11 +13,17 @@ require 'json'
 
 require './model.rb'
 
+# read the Wordnik api key (change this location accordingly)
+file = File.open("../wordsmith-api-key", "rb")
+api_key = file.read
+
+# set configuration
 configure do
 	set :app_name, 'Wordsmith'
-	set :api_key, 'SET KEY HERE' # Make external
+	set :api_key, api_key
 end
   
+# helper methods
 def open(url)
   Net::HTTP.get(URI.parse(url))
 end
