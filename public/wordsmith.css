@@ -1,0 +1,64 @@
+BODY {
+  margin: 0;
+}
+.title {
+  background-color: #4799df;
+}
+.title IMG.pad {
+  padding: 4px;
+  vertical-align: middle;
+}
+.word {
+  color: #4799df;
+  font-size: 34px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+h3 {
+  color: #000;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+.source {
+  color: #999;
+  font-style: italic;
+  font-family: Times New Roman;
+}
+#nav {
+  color: #666;
+  margin: 20px;
+  text-align: center;
+}
+#nav A {
+  color: #4799df;
+  font-style: italic;
+  font-family: Times New Roman;
+  text-decoration: none;
+}
+#nav A.disabled {
+  color: #666;
+}
+.def {
+  color: #666;
+  font-family: Arial, sans-serif;
+}
+#main {
+  margin: 20px;
+}
+.example {
+  list-style: none;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.example LI {
+  margin: 0;
+  padding-bottom: 10px;
+}
+.example LI A {
+  display: block;
+  color: #4799df;
+  font-style: italic;
+  font-family: Times New Roman;
+}

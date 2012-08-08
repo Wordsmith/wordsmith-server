@@ -1,0 +1,84 @@
+<script>
+$(function(){
+	var $pos = $('#examples li:first');
+	var size = $('#examples li').size();
+	var index = 0;
+	var lock = false;
+	
+	$('#examples li:gt(0)').hide();
+	
+	setLinks();
+	
+	function setLinks() {
+		if(index == 0) $('#prev-example').addClass("disabled");
+		else $('#prev-example').removeClass("disabled");
+		if(index == size-1) $('#next-example').addClass("disabled");
+		else $('#next-example').removeClass("disabled");
+	}
+	
+	$('#next-example').click(function(e){
+		e.preventDefault();
+		if(lock || index == size-1) return false;
+		lock = true;
+		index++;
+		setLinks();
+		var scrollY = window.pageYOffset || document.documentElement.scollTop;
+		$pos.fadeOut(function(){
+			$pos = $(this).delay().next().fadeIn(function(){$('body').scrollTop(scrollY);})
+			lock = false;
+		});
+		return false;
+	});
+	
+	$('#prev-example').click(function(e){
+		e.preventDefault();
+		if(lock || index == 0) return false;
+		lock = true;
+		index--;
+		setLinks();
+		var scrollY = window.pageYOffset || document.documentElement.scollTop;
+		$pos.fadeOut(function(){
+			$pos = $(this).delay().prev().fadeIn(function(){$('body').scrollTop(scrollY);});
+			lock = false;
+		});
+		return false;
+	});
+});
+</script>
+
+<div id="main">
+
+<div>
+<a target="_blank" href="http://www.wordnik.com"><img style="float:right" src="http://www.wordnik.com/images/media-kit/wordnik_badge_a2.png" /></a>
+<h2 class="word"><%= params[:word] %></h2>
+</div>
+
+<% if @definitions.count > 0 %>
+	<h3>Definitions</h3>
+	<p class="source"><%= @attributions.uniq.join("<br/>") %></p>
+	<% @definitions.each do |d| %>
+		<p class="def">
+		<i><%= d.type %></i>
+		<%= d.text %>
+		</p>
+	<% end %>
+	<hr/>
+<% end %>
+
+<% if @examples.count > 0 %>
+	<h3>Examples</h3>
+	<ul id="examples" class="example">
+	<% @examples.each do |d| %>
+		<li>
+		<blockquoute><%=d.text%></blockquote>
+		<a target="_blank" href="<%=d.url%>"><%=d.title%></a>
+		</li>
+	<% end %>
+	</ul>
+	<div id="nav">
+		<a id="prev-example" href="#">&laquo; previous example</a> | 
+		<a id="next-example" href="#">next example &raquo;</a>
+	</div>
+<% end %>
+
+</div>

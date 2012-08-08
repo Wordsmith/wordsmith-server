@@ -1,0 +1,37 @@
+@blue: #4799df;
+@serif: Arial, sans-serif;
+@roman: Times New Roman;
+
+BODY { margin: 0; }
+.title { 
+	background-color: @blue; 
+	
+	IMG.pad { 
+		padding:4px; 
+		vertical-align:middle;
+	}
+}
+.word { color: @blue; font-size: 34px; font-family: @serif; font-weight: bold;}
+h3 { color: #000; font-size: 16px; font-family: @serif; font-weight: bold;}
+.source { color: #999; font-style: italic; font-family: @roman; }
+#nav { 
+	color: #666;
+	margin: 20px;
+	text-align: center;
+	A { color: @blue; font-style: italic; font-family: @roman; text-decoration: none; }
+	A.disabled { color: #666; }
+}
+.def { color: #666; font-family: @serif; }
+#main { margin: 20px; }
+.example { 
+	list-style: none; 
+	font-family: @serif; 
+	margin: 0;
+	padding: 0;
+	
+	LI { 
+		margin: 0;
+		padding-bottom:10px; 
+		A { display: block; color: @blue; font-style: italic; font-family: @roman;}
+	}
+}

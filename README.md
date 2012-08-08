@@ -1,4 +1,4 @@
-wordsmith-server
-================
+server
+======
 
-Wordsmith Sinatra server for providing word definitions
+Wordsmith lookup definitions server
