@@ -14,8 +14,7 @@ require 'json'
 require './model.rb'
 
 # read the Wordnik api key (change this location accordingly)
-file = File.open("../wordsmith-api-key", "rb")
-api_key = file.read
+api_key = IO.read("../wordsmith-api-key")
 
 # set configuration
 configure do
