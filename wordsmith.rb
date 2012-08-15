@@ -6,6 +6,7 @@
 # Available under the BSD and MIT licenses: http://getwordsmith.co/license/
 #
 require 'sinatra'
+require 'yaml'
 
 require 'net/http'
 require 'uri'
@@ -13,32 +14,49 @@ require 'json'
 
 require './model.rb'
 
-# read the Wordnik api key (change this location accordingly)
-api_key = IO.read("../wordsmith-api-key")
+# config
+config = YAML.load_file("config.yaml")
 
 # set configuration
 configure do
-	set :app_name, 'Wordsmith'
-	set :api_key, api_key
+	set :app_name => config['app_name']
+	set :api_key => config['api_key']
+	set :ga_id => config['ga_id']
 end
+
+# echo config to console
+puts config
   
 # helper methods
 def open(url)
   Net::HTTP.get(URI.parse(url))
 end
 
+#
+# route: /
+#
+get "/" do
+
+  erb :about
+  
+end
+
+#
 # route: /css/definition.css
+#
 get "/css/definition.css" do
 
   less :definition
 
 end
 
+#
 # route: /:word
+#
 get '/:word' do
 
-  definitions_url = "http://api.wordnik.com//v4/word.json/" + params[:word] + "/definitions?includeRelated=false&includeTags=false&limit=200&sourceDictionaries=ahd&useCanonical=false" + "&api_key=" + settings.api_key
-  examples_url = "http://api.wordnik.com//v4/word.json/" + params[:word] + "/examples?includeDuplicates=false&useCanonical=false" + "&api_key=" + settings.api_key
+  definitions_url = URI.encode("http://api.wordnik.com//v4/word.json/" + params[:word] + "/definitions?includeRelated=false&includeTags=false&limit=200&sourceDictionaries=ahd&useCanonical=false" + "&api_key=" + settings.api_key)
+  examples_url = URI.encode("http://api.wordnik.com//v4/word.json/" + params[:word] + "/examples?includeDuplicates=false&useCanonical=false" + "&api_key=" + settings.api_key)
   
   @attributions = Array.new
   @definitions = Array.new

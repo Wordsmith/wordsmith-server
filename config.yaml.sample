@@ -1,0 +1,8 @@
+#
+# copy this file and rename to config.yaml
+# set your Wordnik API key in the api_key line
+# set your google analytics ID in ga_id if you are using GA
+#
+app_name: Wordsmith
+api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ga_id: UA-xxxxxxxx-x
