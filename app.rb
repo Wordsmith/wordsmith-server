@@ -1,5 +1,5 @@
 # 
-# Wordsmith Server v1.0
+# Wordsmith Server v1.01
 # getwordsmith.co
 #
 # Copyright (c) Rich Hollis, Jess Eddy 2012

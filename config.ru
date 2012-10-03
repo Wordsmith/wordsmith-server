@@ -1,4 +1,5 @@
 require 'rubygems'
 require 'sinatra'
-require "wordsmith.rb"
+require "./app"
+
 run Sinatra::Application
